@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { MindARThree } from "mind-ar/dist/mindar-image-three.prod.js";
+import { FaGlobe, FaArrowRight } from "react-icons/fa";
 
 export default function DrishyamAR() {
   const containerRef = useRef(null);
@@ -11,6 +12,7 @@ export default function DrishyamAR() {
   const [showResult, setShowResult] = useState(false);
 
   const WEBSITE_URL = "https://www.rjatlasdigitalai.com/";
+  const WORKWEB="https://works-rj.vercel.app/"
 
   const hideMindARScannerUI = () => {
     const selectors = [
@@ -140,97 +142,96 @@ export default function DrishyamAR() {
   }, []);
 
   return (
-    <div className="ar-page">
-      <div ref={containerRef} className="ar-container" />
+    <div className={`ar-page ${showResult ? "result-active" : ""}`}>
+  <div ref={containerRef} className="ar-container" />
 
-      {showResult && (
-        <div className="screen-result">
-          <div className="result-card hero-card">
-            <p className="eyebrow">PREMIUM SURFACE SOLUTIONS</p>
+  {showResult && (
+    <div className="screen-result">
+      <div className="result-content">
+        <div className="hero-card">
+          <h1>RJ ATLAS DIGITAL AI</h1>
 
-            <h1>StoneLux Marble</h1>
+          <p className="subtitle">Digital Marketing Agency</p>
 
-            <p className="subtitle">
-              Marble • Granite • Tiles • Wall Cladding
-            </p>
+          <button
+            className="visit-button"
+            onClick={() => {
+              window.location.href = WEBSITE_URL;
+            }}
+          >
+            <FaGlobe />
+            <span>WEBSITE</span>
+          </button>
+        </div>
 
-            <button
-              className="visit-button"
-              onClick={() => {
-                window.location.href = WEBSITE_URL;
-              }}
-            >
-              BOOK SITE VISIT
-            </button>
-          </div>
-
-          <div className="product-grid">
-            <div className="product-card">
-              <img
-                src="https://images.unsplash.com/photo-1618220179428-22790b461013?auto=format&fit=crop&w=900&q=80"
-                alt="Marble"
-              />
-              <h3>Marble</h3>
-              <p>Luxury natural stone</p>
-            </div>
-
-            <div className="product-card">
-              <img
-                src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=900&q=80"
-                alt="Granite"
-              />
-              <h3>Granite</h3>
-              <p>Strong premium finish</p>
-            </div>
-
-            <div className="product-card">
-              <img
-                src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=900&q=80"
-                alt="Tiles"
-              />
-              <h3>Tiles</h3>
-              <p>Modern wall & floor</p>
+        <div className="services-list">
+          <div className="service-item">
+            <img src="/dm2.png" alt="Digital Marketing" />
+            <div>
+              <h3>Digital Marketing</h3>
+              <p>Social media ads, branding & growth</p>
             </div>
           </div>
 
-          <div className="pill-row">
-            <div className="feature-pill">Wall Cladding</div>
-            <div className="feature-pill">Kitchen Tops</div>
+          <div className="service-item">
+            <img src="/wd.png" alt="Website Development" />
+            <div>
+              <h3>Website Development</h3>
+              <p>Modern websites for businesses</p>
+            </div>
           </div>
 
-          <div className="contact-card">
-            <p>FREE CONSULTATION</p>
-            <h2>+91 98765 43210</h2>
-            <span>Thalassery, Kerala | www.rjatlasdigitalai.com</span>
-          </div>
-
-          <div className="result-actions">
-            <button className="scan-again-button" onClick={scanAgain}>
-              Scan Again
-            </button>
-
-            <button className="close-button" onClick={stopAR}>
-              Stop AR
-            </button>
+          <div className="service-item">
+            <img src="/av.png" alt="AI Video Production" />
+            <div>
+              <h3>AI Video Production</h3>
+              <p>Cinematic AI videos, reels & brand films</p>
+            </div>
           </div>
         </div>
-      )}
 
-      {!showResult && (
-        <div className="ar-ui">
-          {status && <div className="ar-status">{status}</div>}
-
-          {!started ? (
-            <button className="ar-button" onClick={startAR}>
-              Start AR
-            </button>
-          ) : (
-            <button className="ar-button stop" onClick={stopAR}>
-              Stop AR
-            </button>
-          )}
+        <div className="mini-features">
+          <span>Automation Software</span>
+          <span>Basic SEO</span>
+          <span>Google Business</span>
         </div>
+
+        <div className="works-button-wrap">
+          <button
+            className="works-button"
+            onClick={() => {
+              window.location.href = WORKWEB;
+            }}
+          >
+            <span>VIEW OUR WORKS</span>
+            <FaArrowRight />
+          </button>
+        </div>
+
+        <div className="contact-card">
+         
+          <h2>+91 99955 28426</h2>
+          <span>Thalassery, Kerala</span>
+        </div>
+      </div>
+    </div>
+  )}
+
+  {!showResult && (
+    <div className="ar-ui">
+      {status && <div className="ar-status">{status}</div>}
+
+      {!started ? (
+        <button className="ar-button" onClick={startAR}>
+          Start AR
+        </button>
+      ) : (
+        <button className="ar-button stop" onClick={stopAR}>
+          Stop AR
+        </button>
       )}
     </div>
+  )}
+</div>
   );
 }
