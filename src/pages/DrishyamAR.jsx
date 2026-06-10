@@ -223,7 +223,7 @@ export default function DrishyamAR() {
 
       {!started ? (
         <button className="ar-button" onClick={startAR}>
-          Start AR
+         Tap to Scan
         </button>
       ) : (
         <button className="ar-button stop" onClick={stopAR}>
